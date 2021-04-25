@@ -1,0 +1,30 @@
+syntax = "proto3";
+package grpc;
+option go_package = "./";
+
+message Article{
+	string id = 1;
+	string title = 2;
+	string body = 3;
+}
+
+message CreateRequest{
+	Article article = 1;	
+}
+
+message CreateResponse{
+	string id = 1;
+}
+
+message ReadRequest{
+	string id = 1;
+}
+
+message ReadResponse{
+	Article article = 1;
+}
+
+service ArticleService{
+	rpc Create(CreateRequest) returns (CreateResponse);
+	rpc Read(ReadRequest) returns (ReadResponse);
+}
